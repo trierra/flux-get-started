@@ -1,0 +1,21 @@
+apiVersion: autopilot.libopenstorage.org/v1alpha1
+kind: ActionApproval
+metadata:
+  creationTimestamp: null
+  labels:
+    rule: test1
+  name: test1-pvc-bdd0b10a-9ca2-4d26-ac50-a8ad92efa273
+  namespace: pgbench
+  uid: 34ca4a6f-fbaa-419f-916d-dc5248994f31
+spec:
+  actions:
+  - name: resize
+    params:
+      maxsize: 12Gi
+      scalepercentage: "10"
+  approvalState: approved
+status:
+  Rule:
+    Name: ""
+    Namespace: ""
+  lastProcessTimestamp: null
