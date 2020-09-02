@@ -1,0 +1,42 @@
+apiVersion: autopilot.libopenstorage.org/v1alpha1
+kind: ActionApproval
+metadata:
+  creationTimestamp: null
+  finalizers:
+  - autopilot.libopenstorage.org/delete
+  labels:
+    object: pvc-052bb032-2625-4c79-a48a-bc763d40ad83
+    rule: test1
+  name: test1-pvc-052bb032-2625-4c79-a48a-bc763d40ad83
+  namespace: pgbench
+spec:
+  actions:
+  - name: resize
+    params:
+      scalepercentage: "1"
+  approvalState: approved
+status:
+  Rule:
+    Name: test1
+    Namespace: ""
+  actionPreviews:
+  - action:
+      name: resize
+      params:
+        scalepercentage: "1"
+    expectedResult:
+      Message: PVC will resize from 10Gi to 10844792422
+    involvedObjects:
+    - apiVersion: v1
+      kind: PersistentVolumeClaim
+      name: pgbench-data
+      namespace: pgbench
+      ownerReferences:
+      - apiVersion: apps/v1
+        blockOwnerDeletion: true
+        controller: true
+        kind: ReplicaSet
+        name: pgbench-57f9d94764
+        uid: 7d579dd7-6ded-41b1-9798-0883a36139c5
+      uid: pvc-052bb032-2625-4c79-a48a-bc763d40ad83
+  lastProcessTimestamp: "2020-09-02T21:10:20Z"
